@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/js-base64": "^2.3.1",
     "base-64": "^0.1.0",
+    "js-base64": "^2.4.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts-ts": "2.13.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
+    "start": "set HOST=kyc.localdomain&&react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
