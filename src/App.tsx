@@ -11,10 +11,15 @@ interface Props {
   searchTerm: string; 
 }
 
+interface CompanyDetail {
+  name: string;
+  companyNumber: string;
+}
+
 interface State {
 
   // tslint:disable-next-line:no-any
-  companies: any[]; 
+  companies: CompanyDetail[]; 
 }
 
 const requestOptions = {
@@ -38,10 +43,31 @@ class App extends React.Component<Props, State> {
 
     const result = await response.json();
 
-    this.setState( { companies: result.items});
+    const companyDetails: Array<CompanyDetail> = result.items.map((item: {title: string, company_number: string}) => {
+      return {
+      name : item.title,
+      companyNumber: item.company_number,      
+    };
+  });
 
     // tslint:disable-next-line:no-console
-    console.log('companies:' + JSON.stringify(this.state.companies));
+    console.log(`name is ${companyDetails[0].name}`);
+    // tslint:disable-next-line:no-console
+    console.log(`name is ${companyDetails[0].companyNumber}`);
+    // how can you iterate through items and convert to companyDetail type
+    // const companyDetails: Array<CompanyDetail> =  JSON.parse(JSON.stringify(result.items));
+  //   const companies: CompanyDetail[] = items.map(item => <CompanyDetail>{
+  //   name : item.title,
+  //   number: item.company_number
+  // });
+
+    // tslint:disable-next-line:no-console
+    // console.log(`Items is ${JSON.stringify(companyDetails)}`);
+
+    this.setState({companies : companyDetails});
+
+    // tslint:disable-next-line:no-console
+    // console.log('companies:' + JSON.stringify(this.state.companies));
   }
 
   render() {
