@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "@types/js-base64": "^2.3.1",
+    "@types/material-ui": "^0.21.0",
     "base-64": "^0.1.0",
     "js-base64": "^2.4.3",
+    "material-ui": "^0.20.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts-ts": "2.13.0"
@@ -22,5 +24,9 @@
     "@types/react": "^16.0.36",
     "@types/react-dom": "^16.0.3",
     "typescript": "^2.7.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
   }
 }
