@@ -67,7 +67,6 @@ export default class App extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        Number Companies is {this.state.companies.length}
         <CompanyDetailList companies={this.state.companies} />
       </div>
     );
