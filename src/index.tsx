@@ -1,18 +1,23 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import promiseMiddleware from 'redux-promise-middleware';
+import { createStore, applyMiddleware } from 'redux';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import './index.css';
-import './components/hello.css';
-// import Hello from './hello';
-// import ComanyDetails from './components/CompanyDetails';
+import { rootReducer } from './reducers/index';
+
+// TODO: need to add redux-promise to middleware
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware())(createStore);
 
 ReactDOM.render(
-  <MuiThemeProvider>
-    <App searchTerm="chan" />
-  </MuiThemeProvider>,
-  // <ComanyDetails companyName="JC Limited" companyNumber="AB-1234" />,
+  <Provider store={createStoreWithMiddleware(rootReducer)}>
+    <MuiThemeProvider>
+      <App />
+    </MuiThemeProvider>
+  </Provider>,
   document.getElementById('root') as HTMLElement
 );
 

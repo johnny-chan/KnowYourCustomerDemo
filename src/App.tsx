@@ -4,45 +4,35 @@ import * as React from 'react';
 // import ToolBarGroup from 'material-ui/Toolbar/ToolbarGroup';
 // import ToolBar from 'material-ui/Toolbar';
 import { CompanyDetail } from './Common/types';
+import Search from './containers/Search';
 import CompanyDetailList from './components/CompanyDetailsList';
 
 import './App.css';
 
-interface Props {
-  searchTerm: string;
-}
-
-interface CompanyHouseItemApiResponse {
-  title: string;
-  company_number: string;
-}
+interface Props {}
 
 interface State {
   companies: Array<CompanyDetail>;
 }
 
-const requestOptions = {
-  method: 'GET',
-  headers: {
-    Accept: 'application/json',
-    authorization: 'Basic bEZ5OUdhYVo5akMwOEVNUEE3Sk9uam1oeTNxeTZWUW1semF0Qm1Pbjo='
-  }
-};
+// const requestOptions = {
+//   method: 'GET',
+//   headers: {
+//     Accept: 'application/json',
+//     authorization: 'Basic bEZ5OUdhYVo5akMwOEVNUEE3Sk9uam1oeTNxeTZWUW1semF0Qm1Pbjo='
+//   }
+// };
 
-async function getCompanyHouseDetails(searchTerm: string) {
-  const res = await fetch(
-    `https://api.companieshouse.gov.uk/search?q=${searchTerm}`,
-    requestOptions
-  );
-  const json = await res.json();
-  return json;
-}
+// async function getCompanyHouseDetails(searchTerm: string) {
+//   const res = await fetch(
+//     `https://api.companieshouse.gov.uk/search?q=${searchTerm}`,
+//     requestOptions
+//   );
+//   const json = await res.json();
+//   return json;
+// }
 
 export default class App extends React.Component<Props, State> {
-  // state: State = {
-  //   companies: []
-  // };
-
   constructor(props: Props) {
     super(props);
 
@@ -51,23 +41,23 @@ export default class App extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount() {
-    getCompanyHouseDetails(this.props.searchTerm).then(response => {
-      const results = response.items.map((item: CompanyHouseItemApiResponse) => {
-        return {
-          name: item.title,
-          companyNumber: item.company_number
-        };
-      });
+  // componentDidMount() {
+  //   getCompanyHouseDetails(this.props.searchTerm).then(response => {
+  //     const results = response.items.map((item: CompanyHouseItemApiResponse) => {
+  //       return {
+  //         name: item.title,
+  //         companyNumber: item.company_number
+  //       };
+  //     });
 
-      this.setState({ companies: results });
-    });
-  }
+  //     this.setState({ companies: results });
+  //   });
+  // }
 
   render() {
     return (
       <div>
-        Number Companies is {this.state.companies.length}
+        <Search />
         <CompanyDetailList companies={this.state.companies} />
       </div>
     );

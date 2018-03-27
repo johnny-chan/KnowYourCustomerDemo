@@ -49,7 +49,6 @@ export default class CompanyDetailsList extends React.Component<Props> {
   render() {
     return (
       <>
-        CompanyDetailList : {this.state.companies.length}
         {this.state.companies.map((c: CompanyDetail) => (
           <CompanyDetailItem companyName={c.name} companyNumber={c.companyNumber} />
         ))}
