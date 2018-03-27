@@ -1,11 +1,16 @@
 import { CompanyDetail } from '../Common/types';
 import { ActionTypes, TypeKeys } from '../action/index';
 
-export interface CompanyDetailsState {
+export interface SearchResult {
+  term: string;
   items: CompanyDetail[];
 }
 
-export const reducer = (state: CompanyDetailsState = { items: [] }, action: ActionTypes) => {
+export interface SearchResultsState {
+  results: SearchResult[];
+}
+
+export const reducer = (state: SearchResultsState = { results: [] }, action: ActionTypes) => {
   console.log('Action received in CompanyDetailsReducer', action);
 
   // when action is of type "searchCompany", issue a fetch to companies house
@@ -13,12 +18,13 @@ export const reducer = (state: CompanyDetailsState = { items: [] }, action: Acti
   switch (action.type) {
     case `${TypeKeys.SEARCH}_FULFILLED`: {
       // tslint:disable-next-line:no-any
-      return action.payload.data.items.map((item: any) => {
-        return {
+      return [
+        ...state.results,
+        action.payload.data.items.map((item: any) => ({
           name: item.title,
           number: item.company_number
-        };
-      });
+        }))
+      ];
     }
     default: {
       // do nothing
