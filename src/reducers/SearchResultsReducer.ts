@@ -20,7 +20,7 @@ export const reducer = (state: SearchResultsState = { results: [] }, action: Act
       // tslint:disable-next-line:no-any
       return [
         ...state.results,
-        action.payload.data.items.map((item: any) => ({
+        action.payload.data.items.map((item: { title: string; company_number: string }) => ({
           name: item.title,
           number: item.company_number
         }))
