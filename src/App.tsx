@@ -5,6 +5,7 @@ import * as React from 'react';
 // import ToolBar from 'material-ui/Toolbar';
 import { CompanyDetail } from './Common/types';
 import Search from './containers/Search';
+import SearchResult from './containers/SearchResult';
 import CompanyDetailList from './components/CompanyDetailsList';
 
 import './App.css';
@@ -58,6 +59,7 @@ export default class App extends React.Component<Props, State> {
     return (
       <div>
         <Search />
+        <SearchResult />
         <CompanyDetailList companies={this.state.companies} />
       </div>
     );
