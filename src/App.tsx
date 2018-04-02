@@ -3,18 +3,13 @@ import * as React from 'react';
 // import { Card, CardText } from 'material-ui/Card';
 // import ToolBarGroup from 'material-ui/Toolbar/ToolbarGroup';
 // import ToolBar from 'material-ui/Toolbar';
-import { CompanyDetail } from './Common/types';
 import Search from './containers/Search';
 import SearchResult from './containers/SearchResult';
-import CompanyDetailList from './components/CompanyDetailsList';
+import CompanyDetail from './containers/CompanyDetail';
 
 import './App.css';
 
 interface Props {}
-
-interface State {
-  companies: Array<CompanyDetail>;
-}
 
 // const requestOptions = {
 //   method: 'GET',
@@ -33,7 +28,7 @@ interface State {
 //   return json;
 // }
 
-export default class App extends React.Component<Props, State> {
+export default class App extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
@@ -60,7 +55,7 @@ export default class App extends React.Component<Props, State> {
       <div>
         <Search />
         <SearchResult />
-        <CompanyDetailList companies={this.state.companies} />
+        <CompanyDetail />
       </div>
     );
   }

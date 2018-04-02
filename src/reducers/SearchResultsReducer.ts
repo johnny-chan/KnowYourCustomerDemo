@@ -1,9 +1,14 @@
 import { ActionTypes, TypeKeys } from '../action/index';
+import { RootState } from '.';
 
 export interface SearchResultsState {
   // tslint:disable-next-line:no-any
   items: any[];
 }
+
+export const getCompanyDetails = (state: RootState) => {
+  return state.searchResults.items.find(i => i.title === state.selectedCompany);
+};
 
 export const reducer = (state: SearchResultsState = { items: [] }, action: ActionTypes) => {
   console.log('Action received in CompanyDetailsReducer', action);
