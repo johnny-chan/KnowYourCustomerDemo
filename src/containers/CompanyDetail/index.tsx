@@ -4,12 +4,11 @@ import { RootState } from '../../reducers';
 import { getCompanyDetails } from '../../reducers/SearchResultsReducer';
 
 interface ConnectedProps {
-  selectedCompany: string;
   // tslint:disable-next-line:no-any
   companyDetail: any;
 }
 
-// TODO: Define company detail type and then update across code base
+// TODO: 1) Define company detail type and then update across code base
 // what do i want to store, everything?
 class CompanyDetail extends React.Component<ConnectedProps> {
   render() {
@@ -22,6 +21,7 @@ class CompanyDetail extends React.Component<ConnectedProps> {
             <>
               <div>{this.props.companyDetail.title}</div>
               <div>{this.props.companyDetail.company_number}</div>
+
               <div>{this.props.companyDetail.company_status}</div>
               <div>{this.props.companyDetail.company_type}</div>
             </>
@@ -32,10 +32,10 @@ class CompanyDetail extends React.Component<ConnectedProps> {
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
-  selectedCompany: state.selectedCompany,
+const mapStateToProps = (state: RootState): ConnectedProps => ({
   companyDetail: getCompanyDetails(state, state.selectedCompany)
 });
 
+// TODO: 2) What should the component be cast to ?? it should not be any
 // tslint:disable-next-line:no-any
 export default connect(mapStateToProps)(CompanyDetail as any);
