@@ -9,7 +9,6 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { rootReducer } from './reducers/index';
 
-// TODO: need to add redux-promise to middleware
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware())(createStore);
 
 ReactDOM.render(
