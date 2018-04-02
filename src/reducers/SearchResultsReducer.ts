@@ -6,8 +6,11 @@ export interface SearchResultsState {
   items: any[];
 }
 
-export const getCompanyDetails = (state: RootState) => {
-  return state.searchResults.items.find(i => i.title === state.selectedCompany);
+export const getCompanyDetails = (state: RootState, id: string) => {
+  // tslint:disable-next-line:no-any
+  return state.searchResults.items.find((item: any) => {
+    return item.company_number === id;
+  });
 };
 
 export const reducer = (state: SearchResultsState = { items: [] }, action: ActionTypes) => {

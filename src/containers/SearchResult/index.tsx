@@ -33,7 +33,11 @@ class SearchResult extends React.Component<ConnectedProps> {
 
   // tslint:disable-next-line:no-any
   renderCompanyNameForSelection = (result: any) => (
-    <li onClick={this.selectedCompanyOnClickHandler} data-id={result.company_number}>
+    <li
+      key={result.company_number}
+      onClick={this.selectedCompanyOnClickHandler}
+      data-id={result.company_number}
+    >
       {result.title}
     </li>
 
