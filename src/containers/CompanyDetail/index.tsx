@@ -36,6 +36,4 @@ const mapStateToProps = (state: RootState): ConnectedProps => ({
   companyDetail: getCompanyDetails(state, state.selectedCompany)
 });
 
-// TODO: 2) What should the component be cast to ?? it should not be any
-// tslint:disable-next-line:no-any
-export default connect(mapStateToProps)(CompanyDetail as any);
+export default connect(mapStateToProps)(CompanyDetail);

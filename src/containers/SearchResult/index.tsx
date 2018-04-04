@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
-import { SelectedCompany } from '../../action';
+import { SelectedCompany, SelectedCompanyAction } from '../../action';
 
 interface ConnectedProps {
   // tslint:disable-next-line:no-any
   results: any[];
-  SelectedCompany: Function;
 }
 
-class SearchResult extends React.Component<ConnectedProps> {
-  constructor(props: ConnectedProps) {
+interface DispatchProps {
+  SelectedCompany(id: string): SelectedCompanyAction;
+}
+
+class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
+  constructor(props: ConnectedProps & DispatchProps) {
     super(props);
 
     this.selectedCompanyOnClickHandler = this.selectedCompanyOnClickHandler.bind(this);
@@ -62,5 +65,4 @@ const mapDispatchToProps = {
   SelectedCompany
 };
 
-// tslint:disable-next-line:no-any
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResult as any);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
