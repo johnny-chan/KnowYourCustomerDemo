@@ -60,6 +60,4 @@ const mapDispatchToProps = {
 
 // tslint:disable-next-line:max-line-length
 // https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
-
-// tslint:disable-next-line:no-any
-export default connect(null, mapDispatchToProps)(Search as any);
+export default connect(null, mapDispatchToProps)(Search);
