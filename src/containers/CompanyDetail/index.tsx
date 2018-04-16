@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
+
+import { CompanyDetail as CompanyDetailType } from '../../common/types';
 import { getCompanyDetails } from '../../reducers/SearchResultsReducer';
 
 interface ConnectedProps {
   // tslint:disable-next-line:no-any
-  companyDetail: any;
+  companyDetail?: CompanyDetailType;
 }
 
 // TODO: 1) Define company detail type and then update across code base
@@ -19,11 +21,13 @@ class CompanyDetail extends React.Component<ConnectedProps> {
         <>
           {this.props.companyDetail && (
             <>
-              <div>{this.props.companyDetail.title}</div>
-              <div>{this.props.companyDetail.company_number}</div>
+              <div>{this.props.companyDetail.name}</div>
+              <div>{this.props.companyDetail.companyNumber}</div>
 
-              <div>{this.props.companyDetail.company_status}</div>
-              <div>{this.props.companyDetail.company_type}</div>
+              <div>{this.props.companyDetail.status}</div>
+              <div>{this.props.companyDetail.type}</div>
+              <div>{this.props.companyDetail.createdDate}</div>
+              <div>{this.props.companyDetail.endDate}</div>
             </>
           )}
         </>

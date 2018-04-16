@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
 import { SelectedCompany, SelectedCompanyAction } from '../../action';
 
+import { CompanyDetail } from '../../common/types';
+
 interface ConnectedProps {
   // tslint:disable-next-line:no-any
-  results: any[];
+  results: CompanyDetail[];
 }
 
 interface DispatchProps {
@@ -19,9 +21,8 @@ class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
     this.selectedCompanyOnClickHandler = this.selectedCompanyOnClickHandler.bind(this);
   }
 
-  // tslint:disable-next-line:no-any
-  getUniqueKey = (item: any) => {
-    return item.company_number;
+  getUniqueKey = (item: CompanyDetail) => {
+    return item.companyNumber;
     // tslint:disable-next-line:semicolon
   };
 
@@ -34,14 +35,13 @@ class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
     // tslint:disable-next-line:semicolon
   };
 
-  // tslint:disable-next-line:no-any
-  renderCompanyNameForSelection = (result: any) => (
+  renderResults = (result: CompanyDetail) => (
     <li
-      key={result.company_number}
+      key={result.companyNumber}
       onClick={this.selectedCompanyOnClickHandler}
-      data-id={result.company_number}
+      data-id={result.companyNumber}
     >
-      {result.title}
+      {result.name}
     </li>
 
     // tslint:disable-next-line:semicolon
@@ -51,9 +51,7 @@ class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
   // to update the selectedCompany application state
 
   render() {
-    return (
-      <ul>{this.props.results && this.props.results.map(this.renderCompanyNameForSelection)}</ul>
-    );
+    return <ul>{this.props.results && this.props.results.map(this.renderResults)}</ul>;
   }
 }
 
