@@ -51,7 +51,11 @@ class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
   // to update the selectedCompany application state
 
   render() {
-    return <ul>{this.props.results && this.props.results.map(this.renderResults)}</ul>;
+    return (
+      <div>
+        <ul>{this.props.results && this.props.results.map(this.renderResults)}</ul>
+      </div>
+    );
   }
 }
 

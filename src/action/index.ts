@@ -34,8 +34,7 @@ export function CompanyHouseSearch(term: string): SearchAction {
     }
   });
 
-  console.log('CompanyHouseSearch action creator:', request);
-
+  // am using redux-promise-middleware to manage ajax requests
   return {
     type: TypeKeys.SEARCH,
     payload: request

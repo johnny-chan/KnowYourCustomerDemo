@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import TextField from 'material-ui/TextField';
+import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
 
-import { CompanyHouseSearch } from '../../action/index';
+import { CompanyHouseSearch } from '../../action/';
+import SearchResult from '../SearchResult/';
+import SelectedCompanyDetails from '../CompanyDetail';
 
 interface ConnectedProps {
   // tslint:disable-next-line:no-any
@@ -41,15 +46,26 @@ class Search extends React.Component<ConnectedProps, State> {
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit}>
-        Search for:
-        <input
-          type="text"
-          placeholder="please enter a company to search for"
-          onChange={this.onChange}
-        />
-        <button type="submit">Search</button>
-      </form>
+      <Grid container={true}>
+        <Grid item={true} xs={4}>
+          <form onSubmit={this.onFormSubmit}>
+            <TextField
+              id="search"
+              label="Find company"
+              onChange={this.onChange}
+              type="search"
+              margin="normal"
+            />
+            <Button type="submit">search</Button>
+          </form>
+        </Grid>
+        <Grid item={true} xs={4}>
+          <SearchResult />
+        </Grid>
+        <Grid item={true} xs={4}>
+          <SelectedCompanyDetails />
+        </Grid>
+      </Grid>
     );
   }
 }

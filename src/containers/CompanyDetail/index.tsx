@@ -10,8 +10,6 @@ interface ConnectedProps {
   companyDetail?: CompanyDetailType;
 }
 
-// TODO: 1) Define company detail type and then update across code base
-// what do i want to store, everything?
 class CompanyDetail extends React.Component<ConnectedProps> {
   render() {
     if (!this.props.companyDetail) {
