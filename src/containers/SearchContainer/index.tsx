@@ -12,20 +12,21 @@ interface Props {
 interface ConnectedProps {
   searchResults: CompanyDetail[];
   // tslint:disable-next-line:no-any
-  search(term: string): any;
+  runSearch(term: string): any;
 }
 
 type SearchChildProps = {
   searchResults: CompanyDetail[];
+  runSearch(term: string): Promise<void>;
 };
 
 // to dispatch a search from a given search term
 class SearchContainer extends React.PureComponent<Props & ConnectedProps> {
   render() {
-    const { searchResults } = this.props;
+    const { runSearch, searchResults } = this.props;
     const childrenAsFn = this.props.children as (props: SearchChildProps) => React.ReactNode;
 
-    return <>{childrenAsFn({ searchResults })}</>;
+    return <>{childrenAsFn({ runSearch, searchResults })}</>;
   }
 }
 
@@ -34,7 +35,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = {
-  search: CompanyHouseSearch
+  runSearch: CompanyHouseSearch
 };
 
 export default connect(
