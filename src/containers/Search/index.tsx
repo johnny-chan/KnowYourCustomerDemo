@@ -24,9 +24,6 @@ class Search extends React.Component<ConnectedProps, State> {
     this.state = {
       searchTerm: ''
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   // tslint:disable-next-line:no-any
@@ -48,11 +45,11 @@ class Search extends React.Component<ConnectedProps, State> {
     return (
       <Grid container={true}>
         <Grid item={true} xs={4}>
-          <form onSubmit={this.onFormSubmit}>
+          <form onSubmit={() => this.onFormSubmit}>
             <TextField
               id="search"
               label="Find company"
-              onChange={this.onChange}
+              onChange={() => this.onChange}
               type="search"
               margin="normal"
             />
@@ -76,4 +73,7 @@ const mapDispatchToProps = {
 
 // tslint:disable-next-line:max-line-length
 // https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
-export default connect(null, mapDispatchToProps)(Search);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Search);

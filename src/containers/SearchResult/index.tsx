@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import { RootState } from '../../reducers';
 import { SelectedCompany, SelectedCompanyAction } from '../../action';
 
@@ -23,7 +24,6 @@ class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
 
   getUniqueKey = (item: CompanyDetail) => {
     return item.companyNumber;
-    // tslint:disable-next-line:semicolon
   };
 
   // tslint:disable-next-line:no-any
@@ -32,19 +32,17 @@ class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
     e.preventDefault();
 
     this.props.SelectedCompany(e.currentTarget.dataset.id);
-    // tslint:disable-next-line:semicolon
   };
 
   renderResults = (result: CompanyDetail) => (
-    <li
+    <ListItem
+      button={true}
       key={result.companyNumber}
       onClick={this.selectedCompanyOnClickHandler}
       data-id={result.companyNumber}
     >
-      {result.name}
-    </li>
-
-    // tslint:disable-next-line:semicolon
+      <ListItemText primary={result.name} />
+    </ListItem>
   );
 
   // when company is selected, needs to fire off a dispatch function
@@ -53,7 +51,7 @@ class SearchResult extends React.Component<ConnectedProps & DispatchProps> {
   render() {
     return (
       <div>
-        <ul>{this.props.results && this.props.results.map(this.renderResults)}</ul>
+        <List>{this.props.results && this.props.results.map(this.renderResults)}</List>
       </div>
     );
   }
@@ -67,4 +65,7 @@ const mapDispatchToProps = {
   SelectedCompany
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchResult);
